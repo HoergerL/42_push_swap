@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 18:25:00 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/02 18:25:01 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/03 16:41:55 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ t_content	*create_data(int nbr)
 {
 	t_content	*content;
 
-	content = malloc(sizeof(content));
+	content = malloc(sizeof(t_content));
 	if (!content)
 		display_error();
+	ft_bzero(content, sizeof(t_content));
 	content->value = nbr;
 	return (content);
 }
@@ -38,7 +39,7 @@ int	ft_lst_dup(t_list *list, int nbr)
 	return (1);
 }
 
-void	*check_input(char *str[], t_data *data)
+void	check_input(char *str[], t_data *data)
 {
 	int				i;
 	long long int	nbr;
@@ -66,7 +67,7 @@ void	*check_input(char *str[], t_data *data)
 	}
 }
 
-void	*prepare_input(int argc, char *argv[], t_data *data)
+void	prepare_input(int argc, char *argv[], t_data *data)
 {
 	int		i;
 	char	**split_res;
@@ -78,7 +79,7 @@ void	*prepare_input(int argc, char *argv[], t_data *data)
 		if (split_res == 0)
 			display_error();
 		check_input(split_res, data);
-		ft_free_2d(split_res);
+		ft_free_2d( (void **) split_res);
 		i++;
 	}
 }

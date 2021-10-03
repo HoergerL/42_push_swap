@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 18:24:56 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/02 18:24:57 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/03 17:13:42 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,20 @@ typedef struct s_data
 	t_list	*stack2;
 }					t_data;
 
-void		*prepare_input(int argc, char *argv[], t_data *data);
+void		prepare_input(int argc, char *argv[], t_data *data);
 void		ft_del_stack(t_list *list_head);
 void		display_error(void);
 t_content	*ft_cast_content(void *content);
+int			cmd_sb(t_data *data);
+int			cmd_sa(t_data *data);
+int			cmd_ss(t_data *data);
+int			cmd_pa(t_data *data);
+int			cmd_pb(t_data *data);
+int			cmd_ra(t_data *data);
+int			cmd_rb(t_data *data);
+int			cmd_rr(t_data *data);
+int			cmd_rrr(t_data *data);
+int			cmd_rrb(t_data *data);
+int			cmd_rra(t_data *data);
+void		ft_lstprint(t_list *list, int nr);
 #endif
