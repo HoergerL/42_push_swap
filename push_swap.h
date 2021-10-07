@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 18:24:56 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/03 17:13:42 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/07 16:44:22 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "ft_printf/ft_printf.h"
 # include <limits.h>
 # include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 typedef struct s_content
 {
@@ -27,6 +29,7 @@ typedef struct s_data
 {
 	t_list	*stack1;
 	t_list	*stack2;
+	int		len_list;
 }					t_data;
 
 void		prepare_input(int argc, char *argv[], t_data *data);

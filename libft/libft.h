@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 18:24:34 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/02 18:24:35 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/07 10:34:11 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 
 long long int	ft_atoll(const char *str);
 int				ft_check_nbr(char *nbr);
-void			ft_free_1d(void *to_free);
-void			ft_free_2d(void **to_free);
+void			ft_free_1d(void **to_free);
+void			ft_free_2d(void ***to_free);
 #endif
