@@ -2,8 +2,8 @@
 
 void	rotate(t_list **list)
 {
-	t_list *temp_list;
-	
+	t_list	*temp_list;
+
 	temp_list = *list;
 	*list = (*list)->next;
 	ft_lstadd_back(list, temp_list);
@@ -29,7 +29,7 @@ int	cmd_rb(t_data *data)
 
 int	cmd_rr(t_data *data)
 {
-	if (data->stack1 == NULL ||  data->stack2 == NULL)
+	if (data->stack1 == NULL || data->stack2 == NULL)
 		return (0);
 	cmd_ra(data);
 	cmd_rb(data);

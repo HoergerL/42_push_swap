@@ -32,7 +32,7 @@ int	cmd_sb(t_data *data)
 int	cmd_ss(t_data *data)
 {
 	if (data->stack2 == NULL || data->stack2->next == NULL
-	|| data->stack1 == NULL || data->stack1->next == NULL)
+		|| data->stack1 == NULL || data->stack1->next == NULL)
 		return (0);
 	swap(data->stack2);
 	swap(data->stack1);

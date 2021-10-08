@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 12:17:03 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/03 16:22:42 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/07 18:54:44 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 
 	if (!new)
 		return ;
-	
 	if (!lst || !(*lst))
 	{
 		*lst = new;

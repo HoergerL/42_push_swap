@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 18:24:21 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/07 10:12:30 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/07 18:53:00 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_free_2d(void ***to_free)
 {
-	int i;
+	int	i;
+
 	if (*to_free == NULL)
 		return ;
 	i = 0;

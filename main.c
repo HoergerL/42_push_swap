@@ -6,10 +6,9 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:29:15 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/07 16:49:10 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:01:33 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "push_swap.h"
 
@@ -20,14 +19,13 @@ t_content	*ft_cast_content(void *content)
 
 void	ft_print_content(t_content *content)
 {
-	//ft_printf("\nList content: \n");
 	ft_printf("value: %i\n", content->value);
 }
 
 void	ft_lstprint(t_list *list, int nr)
 {
 	ft_printf("List: %i\n", nr);
-	if(!list)
+	if (!list)
 		return ;
 	while (list)
 	{
@@ -37,24 +35,26 @@ void	ft_lstprint(t_list *list, int nr)
 	ft_printf("\n\n");
 }
 
-int * intdup(int const * src, size_t len)
+int	*intdup(int const *src, size_t len)
 {
-	int * p = malloc(len * sizeof(int));
-	if(!p)
+	int	*p;
+
+	p = malloc(len * sizeof(int));
+	if (!p)
 		display_error();
-	ft_memcpy(p, src, len * sizeof(int)); //wir kopieren 1 zu viel
-	return p;
+	ft_memcpy(p, src, len * sizeof(int));
+	return (p);
 }
 
 void	print_int_arr(int *arr, int len)
 {
-	int k;
+	int	k;
 
 	k = 0;
-	while(k < len)
+	while (k < len)
 	{
 		ft_printf("%i, ", arr[k]);
-		k++;	
+		k++;
 	}
 	ft_printf("\n");
 }
@@ -63,104 +63,136 @@ int	*lst_to_arr(t_list *list)
 {
 	int	len;
 	int	*arr;
-	int i;
+	int	i;
 
 	len = ft_lstsize(list);
-	//ft_printf("len: %i\n", len);
 	i = 0;
 	arr = malloc(sizeof(int) * len);
+	if (!arr)
+		display_error();
 	while (list)
 	{
 		arr[i] = ft_cast_content(list->content)->value;
 		list = list->next;
 		i++;
 	}
-	//print_int_arr(arr, len);
-	return arr;
+	return (arr);
 }
 
-void	create_new_max_list(int ***solutions, int *max_len, int *arr, int i)
+void	create_new_max_list(int **solutions, int max_len, int *arr, int i)
 {
-	(*solutions)[(*max_len) + 1] = intdup((*solutions)[(*max_len)], (*max_len) + 2);
-	(*solutions)[(*max_len) + 1][(*max_len) + 1] = arr[i];
-	(*max_len) = (*max_len) + 1;
+	//solutions[(*max_len) + 1] = intdup(solutions[(*max_len)], (*max_len) + 2);
+	ft_printf("new list created, %i, %i, %p\n", arr[i], max_len, solutions[max_len + 1]);
+	ft_memcpy(solutions[max_len + 1], solutions[max_len], sizeof(**solutions) * (max_len + 1));
+	solutions[max_len + 1][max_len + 1] = arr[i];
+	// (*max_len) = (*max_len) + 1;
+	// print_int_arr(solutions[*max_len], *max_len + 1);
 }
 
-void	check_subsequence(int max_len, int val, int ***solutions)
+void	check_subsequence(int max_len, int val, int **solutions)
 {
 	int	j;
+
 	j = max_len;
 	while (j >= 0)
 	{
-		if(val > (*solutions)[j][j] && val <= (*solutions)[j + 1][j + 1])
+		if (val > solutions[j][j] && val <= solutions[j + 1][j + 1])
 		{
-			free((*solutions)[j + 1]);
-				(*solutions)[j + 1] = intdup((*solutions)[j], j + 2);
-				(*solutions)[j + 1][j + 1] = val;
+			//ft_free_1d((void **)&(solutions[j + 1]));
+			//solutions[j + 1] = intdup(solutions[j], j + 2);
+			ft_memcpy(solutions[j + 1], solutions[j], sizeof(**solutions) * (j + 1));
+			solutions[j + 1][j + 1] = val;
 		}
-		if(val < (*solutions)[j][j] && ((j == 0) || (val > (*solutions)[j][j - 1])))
-			(*solutions)[j][j] = val;
+		if (val < solutions[j][j] && ((j == 0) || (val > solutions[j][j - 1])))
+			solutions[j][j] = val;
 		j--;
 	}
 }
 
-int	calc_subsequence(int *arr, int total_len_arr)
+void	ft_free_solutions(int ***solutions, int len)
 {
-	int **solutions;
-	int i;
-	int max_len;
-	
-	solutions = malloc(total_len_arr * sizeof(int));
-	if(!solutions)
-		display_error();
-	i = 1;
-	max_len = 0;
-	solutions[0] = intdup(arr, 1);	
-	while(i < total_len_arr)
+	int	cnt;
+
+	cnt = 0;
+	while (cnt <= len)
 	{
-		if (arr[i] > solutions[max_len][max_len])
-		{
-			create_new_max_list(&solutions, &max_len, arr, i);
-		}
-		else
-			check_subsequence(max_len, arr[i], &solutions);
-		i++;
+		ft_printf("kommt in get longest subsequence an %i, %i", cnt, len);
+		free((*solutions)[cnt]);
+		(*solutions)[cnt] = NULL;
+		cnt++;
 	}
-	//print_int_arr(solutions[max_len], max_len + 1);
-	return (max_len + 1);
+	free(*solutions);
+	*solutions = NULL;
+	
 }
 
-int	*get_subsequence(int *arr, int total_len_arr)
+void get_subsequence(int *arr, int total_len_arr, t_data *data)
 {
-	int **solutions;
-	int i;
-	int max_len;
-	
-	solutions = malloc(total_len_arr * sizeof(int));
-	if(!solutions)
-		display_error();
-	i = 1;
-	max_len = 0;
-	solutions[0] = intdup(arr, 1);	
-	while(i < total_len_arr)
-	{
-		if (arr[i] > solutions[max_len][max_len])
-		{
-			create_new_max_list(&solutions, &max_len, arr, i);
-		}
-		else
-			check_subsequence(max_len, arr[i], &solutions);
-		i++;
-	}
-	print_int_arr(solutions[max_len], max_len + 1);
-	return (solutions[max_len]);
-}
-
-void rotate_arr(int **arr, int len)
-{
-	int temp;
+	int	**solutions;
 	int	i;
-	
+	int	max_len;
+
+	ft_printf("max len arr = %d\n", total_len_arr);
+	solutions = ft_calloc(total_len_arr + 1, sizeof(solutions));
+	if(!solutions)
+		display_error();
+	i = 0;
+	while (i < total_len_arr)
+	{
+		solutions[i] = ft_calloc(i + 1, sizeof(**solutions));
+		if (!solutions[i])
+		{
+			ft_free_2d((void ***)&solutions);
+			display_error();
+		}
+		i++;
+	}
+	i = 1;
+	max_len = 0;
+	//solutions[0] = intdup(arr, 1, solutions);
+	ft_memcpy(solutions[0], arr, sizeof(**solutions));
+	while (i < total_len_arr)
+	{
+		ft_printf("i: %i\n", i);
+		if (arr[i] > solutions[max_len][max_len])
+		{
+			ft_printf("i if: %i\n", i);
+			create_new_max_list(solutions, max_len, arr, i);
+			max_len++;
+		}
+		else
+		{
+			ft_printf("i else: %i\n", i);
+			check_subsequence(max_len, arr[i], solutions);
+		}
+		i++;
+		print_int_arr(solutions[max_len], max_len + 1);
+		ft_printf("maxlen: %i\n\n", max_len);
+	}
+	ft_printf("vor if\n");
+	if (data->len_sub < max_len + 1)
+	{
+		data->start_sub = arr[0];
+		data->len_sub = max_len + 1;
+		if(data->longest_sub)
+		{
+			free(data->longest_sub);
+			data->longest_sub = intdup(solutions[max_len], max_len + 1);
+			//print_int_arr(data->longest_sub, max_len);
+		}
+		else
+			data->longest_sub = intdup(solutions[max_len], max_len + 1);
+	}
+	print_int_arr(data->longest_sub, max_len);
+	ft_free_2d((void ***) &solutions);
+	//ft_free_solutions(&solutions, max_len);
+}
+
+void	rotate_arr(int **arr, int len)
+{
+	int	temp;
+	int	i;
+
 	i = 1;
 	temp = (*arr)[0];
 	while (i < len)
@@ -171,35 +203,28 @@ void rotate_arr(int **arr, int len)
 	(*arr)[len - 1] = temp;
 }
 
-void get_longest_subsequence(t_list *list)
+void	get_longest_subsequence(t_data *data)
 {
 	int	*arr;
-	int max;
-	int start;
 	int i;
-	int temp;
 
 	i = 1;
-	arr = lst_to_arr(list);
-	rotate_arr(&arr, ft_lstsize(list));
-	start = arr[0];
-	max = calc_subsequence(arr, ft_lstsize(list));
-	while (i < ft_lstsize(list))
+	arr = lst_to_arr(data->stack1);
+	rotate_arr(&arr, data->len_list);
+	data->start_sub = arr[0];
+	data->longest_sub = NULL;
+	while (i < data->len_list)
 	{
-		rotate_arr(&arr, ft_lstsize(list));
-		temp = calc_subsequence(arr, ft_lstsize(list));
-		if (temp > max)
-		{
-			max = temp;
-			start = arr[0];
-		}
+		rotate_arr(&arr, data->len_list);
+		get_subsequence(arr, data->len_list, data);
+		ft_printf("i = %i\n", i);
 		i++;
 	}
-	ft_printf("max_len: %i, start: %i\n", max, start);
-	while (arr[0] != start)
-		rotate_arr(&arr, ft_lstsize(list));
-	arr = get_subsequence(arr, ft_lstsize(list));
+	ft_printf("max_len: %i, start: %i\n", data->len_sub, data->start_sub);
+	print_int_arr(data->longest_sub, data->len_sub);
+	ft_free_1d((void**) &arr);
 }
+
 int	main(int argc, char *argv[])
 {
 	t_list	*list;
@@ -207,11 +232,14 @@ int	main(int argc, char *argv[])
 
 	data.stack1 = NULL;
 	data.stack2 = NULL;
+	data.len_sub = 0;
+	data.len_list = 0;
 	ft_bzero(&data, sizeof(data));
 	prepare_input(argc, argv, &data);
+	data.len_list = ft_lstsize(data.stack1);
 	ft_lstprint(data.stack1, 1);
 	ft_lstprint(data.stack2, 2);
-	get_longest_subsequence(data.stack1);
+	get_longest_subsequence(&data);
 	//ft_printf("################################\n");
 	////cmd_sa(&data);
 	//cmd_pb(&data);
@@ -230,6 +258,6 @@ int	main(int argc, char *argv[])
 	//ft_lstprint(data.stack1, 1);
 	//ft_lstprint(data.stack2, 2);
 	//ft_del_stack(data.stack1);
-	//system("leaks push_swap");
+	 system("leaks push_swap");
 	return (0);
 }

@@ -2,9 +2,9 @@
 
 void	push(t_list **list_pull, t_list **list_push)
 {
-	t_list *list_temp;
-	
-	list_temp =  (*list_pull);
+	t_list	*list_temp;
+
+	list_temp = (*list_pull);
 	 (*list_pull) = (*list_pull)->next;
 	ft_lstadd_front(list_push, list_temp);
 }

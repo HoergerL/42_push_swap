@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 18:25:00 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/07 10:42:13 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/07 16:56:48 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	prepare_input(int argc, char *argv[], t_data *data)
 		if (split_res == 0)
 			display_error();
 		check_input(split_res, data);
-		ft_free_2d( (void ***) &split_res);
+		ft_free_2d((void ***) &split_res);
 		i++;
 	}
 }
