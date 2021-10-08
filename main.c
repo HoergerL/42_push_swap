@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:29:15 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/08 18:04:38 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/08 18:31:20 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,35 @@ void	print_stacks(t_data *data) //Achtung printf, diese Funktion darf nicht mit 
 	ft_printf("\n");
 }
 
+void	auslagern(t_content *content, int intchr, t_data *data)
+{
+	int static	last_found = 0;
+
+	if (intchr != -1)
+	{
+		last_found = intchr;
+		content->flag_longest_sub = 1;
+	}
+	else if (content->flag_longest_sub != 1 &&
+		ft_intchr(data->longest_sub, data->len_sub, ft_cast_content(data->stack1->next->content)->value) != -1 && 
+		content->value > data->longest_sub[last_found + 1] && 
+		content->value < data->longest_sub[last_found + 2])
+	{
+		ft_printf("##########################im komplizierten if\n");
+		content->flag_longest_sub = 1;
+		cmd_sa(data);
+		cmd_ra(data);
+	}
+}
+
 void mark_list_longest_sub(t_data *data)
 {
 	int	i;
 	t_list	*list;
 	t_content	*content;
 	int intchr;
-	int last_found;
 
-	last_found = 0;
+	
 	i = 0;
 	while (i < data->len_list)
 	{
@@ -86,29 +106,13 @@ void mark_list_longest_sub(t_data *data)
 		intchr = ft_intchr(data->longest_sub, data->len_sub, content->value);
 		
 		ft_printf("value: %i, intchr: %i\n", content->value, intchr);
-		if (intchr != -1)
-		{
-			last_found = intchr;
-			content->flag_longest_sub = 1;
-		}
-		else if (content->flag_longest_sub != 1 &&
-			ft_intchr(data->longest_sub, data->len_sub, ft_cast_content(list->next->content)->value) != -1 && 
-			content->value > data->longest_sub[last_found + 1] && 
-			content->value < data->longest_sub[last_found + 2])
-		{
-			ft_printf("##########################im komplizierten if\n");
-			content->flag_longest_sub = 1;
-			cmd_sa(data);
-			cmd_ra(data);
-		}
+		auslagern(content, intchr, data);
 		ft_printf("listel: value: %i, flag: %i\n", content->value, content->flag_longest_sub);
 		if (content->flag_longest_sub == 0)
 			cmd_pb(data);
 		else
 			cmd_ra(data);
 		i++;
-		
-		//print_stacks(data);
 	}
 }
 
@@ -154,6 +158,6 @@ int	main(int argc, char *argv[])
 	//ft_lstprint(data.stack1, 1);
 	//ft_lstprint(data.stack2, 2);
 	//ft_del_stack(data.stack1);
-	// system("leaks push_swap");
+	//system("leaks push_swap");
 	return (0);
 }
