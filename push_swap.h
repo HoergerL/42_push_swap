@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 18:24:56 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/08 09:56:23 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/08 15:22:27 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 typedef struct s_content
 {
 	int		value;
+	int		flag_longest_sub;
 }					t_content;
 
 typedef struct s_data
@@ -51,4 +52,9 @@ int			cmd_rrr(t_data *data);
 int			cmd_rrb(t_data *data);
 int			cmd_rra(t_data *data);
 void		ft_lstprint(t_list *list, int nr);
+void		get_longest_subsequence(t_data *data);
+int			*lst_to_arr(t_list *list);
+void		create_new_max_list(int **solutions, int *max_len, int *arr, int i);
+int			*intdup(int const *src, size_t len);
+void		print_int_arr(int *arr, int len);
 #endif

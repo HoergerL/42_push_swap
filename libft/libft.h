@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 18:24:34 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/07 10:34:11 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/08 15:32:10 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,5 @@ long long int	ft_atoll(const char *str);
 int				ft_check_nbr(char *nbr);
 void			ft_free_1d(void **to_free);
 void			ft_free_2d(void ***to_free);
+int	ft_intchr(int *haystack, int size_haystack, int needle);
 #endif

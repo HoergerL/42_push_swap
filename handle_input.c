@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 18:25:00 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/07 16:56:48 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/08 15:42:40 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_content	*create_data(int nbr)
 		display_error();
 	ft_bzero(content, sizeof(t_content));
 	content->value = nbr;
+	content->flag_longest_sub = 0;
 	return (content);
 }
 

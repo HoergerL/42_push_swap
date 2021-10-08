@@ -5,7 +5,7 @@ RM = rm -f
 
 LIBFT = ./libft/libft.a
 PRINTF = ./ft_printf/libftprintf.a
-FILES = main.c handle_input.c errors.c swap.c push.c rotate.c reverse_rotate.c
+FILES = main.c handle_input.c errors.c swap.c push.c rotate.c reverse_rotate.c subsequence.c subsequence_utils.c
 OBJ = $(FILES:.c=.o)
 
  BONUS = 
