@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 18:24:56 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/08 15:22:27 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/09 15:34:55 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,33 @@
 # include <string.h>
 # include <stdlib.h>
 
+#define ROTATE 1
+#define REVERSE_ROTATE 2
+#define RA_RRB 3
+#define RB_RRA 4
+
+typedef struct s_movement
+{
+	int	rbs;
+	int	rrbs;
+	int	ras;
+	int	rras;
+	int	total_reverse;
+	int	total;
+	int	ra_rrb;
+	int	rb_rra;
+}					t_movement;
 typedef struct s_content
 {
 	int		value;
 	int		flag_longest_sub;
+	int		flag_movement_ra;
+	int		flag_movement_rb;
+	int		flag_movement_rr;
+	int		flag_movement_rrb;
+	int		flag_movement_rra;
+	int		flag_movement_rrr;
+	int		flag_movement;
 }					t_content;
 
 typedef struct s_data
@@ -34,6 +57,10 @@ typedef struct s_data
 	int		len_sub;
 	int		start_sub;
 	int		*longest_sub;
+	int		biggest_el_stack1;
+	int		smallest_el_stack1;
+	int		flag_movement;
+	int		nbr_to_move;
 }					t_data;
 
 void		prepare_input(int argc, char *argv[], t_data *data);
@@ -57,4 +84,5 @@ int			*lst_to_arr(t_list *list);
 void		create_new_max_list(int **solutions, int *max_len, int *arr, int i);
 int			*intdup(int const *src, size_t len);
 void		print_int_arr(int *arr, int len);
+void		outsource_elements_not_in_sub(t_data *data);
 #endif
