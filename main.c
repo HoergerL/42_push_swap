@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:29:15 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/10 11:18:44 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/10 11:38:55 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -359,7 +359,7 @@ void bring_into_right_order(t_data *data)
 		while (ft_cast_content(data->stack1->content)->value != data->smallest_el_stack1)
 		{
 			cmd_rra(data);
-			print_stacks(data);
+			//print_stacks(data);
 			//ft_printf("value: %i, smallest: %i", ft_cast_content(data->stack1)->value,data->smallest_el_stack1);
 		}
 	}
@@ -388,7 +388,7 @@ int	main(int argc, char *argv[])
 	push_back(&data);
 	//print_stacks(&data);
 	bring_into_right_order(&data);
-	print_stacks(&data);
+	//print_stacks(&data);
 	//ft_printf("################################\n");
 	////cmd_sa(&data);
 	//cmd_pb(&data);
