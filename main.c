@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:29:15 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/09 16:49:07 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/10 11:18:44 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,11 @@ int	find_correct_place_for_el(t_data *data, t_list *list)
 			return (index);
 		else if ((to_search > data->biggest_el_stack1 && prev_element == data->biggest_el_stack1)
 			|| (to_search < data->smallest_el_stack1 && prev_element == data->biggest_el_stack1))
+		{
+			if (index == 0)
+				return (1);
 			return (index);
+		}
 		prev_element = ft_cast_content(stack1->content)->value;
 		stack1 = stack1->next;
 		index++;
@@ -318,11 +322,11 @@ void	push_back(t_data *data)
 	{
 		if (data->stack2 == NULL)
 			break;
+		//print_stacks(data);
 		define_biggest_smallest_el_stack1(data);
 		nbr_rotates = calc_optimal_push_back(data);
 		//ft_printf("number of rotates: %i, which rotates:%i, which rotation: %i\n\n", nbr_rotates, data->nbr_to_move, data->flag_movement);
 		push_back_optimal_element(data);
-		//print_stacks(data);
 	}
 }
 
@@ -340,10 +344,10 @@ void bring_into_right_order(t_data *data)
 		index++;
 		list= list->next;
 	}
-	ft_printf("index:%i, smallest el: %i",index, data->smallest_el_stack1);
+	//ft_printf("index:%i, smallest el: %i",index, data->smallest_el_stack1);
 	if (index > ft_lstsize(data->stack1)/ 2)
 	{
-		while (ft_cast_content(data->stack1)->value != data->smallest_el_stack1)
+		while (ft_cast_content(data->stack1->content)->value != data->smallest_el_stack1)
 		{
 			cmd_ra(data);
 			//print_stacks(data);
@@ -356,7 +360,7 @@ void bring_into_right_order(t_data *data)
 		{
 			cmd_rra(data);
 			print_stacks(data);
-			ft_printf("value: %i, smallest: %i", ft_cast_content(data->stack1)->value,data->smallest_el_stack1);
+			//ft_printf("value: %i, smallest: %i", ft_cast_content(data->stack1)->value,data->smallest_el_stack1);
 		}
 	}
 	
@@ -382,6 +386,7 @@ int	main(int argc, char *argv[])
 	outsource_elements_not_in_sub(&data);
 	//print_stacks(&data);
 	push_back(&data);
+	//print_stacks(&data);
 	bring_into_right_order(&data);
 	print_stacks(&data);
 	//ft_printf("################################\n");

@@ -14,7 +14,7 @@ $(NAME):
 	$(CC) $(CFLAGS) -c $(FILES)
 	make -C ./libft
 	make -C ./ft_printf
-	$(CC) $(CFLAGS) $(LIBFT) $(PRINTF) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
 clean:
 	cd libft && make clean
 	rm -f *.o
