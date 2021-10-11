@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:29:15 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/10 11:38:55 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/11 16:02:01 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void truncate_flag_movements(t_data *data, t_list *list)
 
 void fill_data(t_data *data, t_movement *movement, t_list *list)
 {
-	//ft_printf("ras: %i\nrbs: %i\nrras: %i\nrrbs: %i\n", movement->ras,movement->rbs, movement->rras, movement->rrbs);
+	//ft_printf("filldata:\nras: %i\nrbs: %i\nrras: %i\nrrbs: %i\n", movement->ras,movement->rbs, movement->rras, movement->rrbs);
 	if (ft_cast_content(list->content)->flag_movement == ROTATE)
 	{
 		if(movement->rbs > movement->ras)
@@ -182,7 +182,7 @@ int	find_correct_place_for_el(t_data *data, t_list *list)
 	stack1 = data->stack1;
 	to_search = ft_cast_content(list->content)->value;
 	prev_element = ft_cast_content(stack1->content)->value;
-	while (index < ft_lstsize(data->stack1))
+	while (stack1)
 	{
 		if (to_search > prev_element && to_search < ft_cast_content(stack1->content)->value)
 			return (index);
@@ -206,7 +206,7 @@ int	calc_steps(t_data *data,t_list *list, int index)
 	int	rotations_needed;
 
 	index_target = find_correct_place_for_el(data, list);
-	//ft_printf("index target: %i\n", index_target);
+	//ft_printf("\n\nindex target: %i\n", index_target);
 	rotations_needed = calc_rotations(data, index, index_target, list);
 	return (rotations_needed);
 }
@@ -224,7 +224,7 @@ int	calc_optimal_push_back(t_data *data)
 	list = data->stack2;
 	while (index < ft_lstsize(data->stack2))
 	{
-		//ft_printf("element in list: %i\n", ft_cast_content(list->content)->value);
+		//ft_printf("\n\nelement in list: %i\n", ft_cast_content(list->content)->value);
 		temp_min = calc_steps(data, list, index);
 		if(temp_min < min)
 		{
@@ -279,7 +279,7 @@ void push_back_optimal_element(t_data *data)
 
 	list = lst_find_el_by_value(data->stack2, data->nbr_to_move);
 	content = ft_cast_content(list->content);
-	//ft_printf("ras: %i\nrbs: %i\nrr: %i\nrras: %i\nrrbs: %i\nrrrs: %i\n", content->flag_movement_ra,content->flag_movement_rb, content->flag_movement_rr, content->flag_movement_rra, content->flag_movement_rrb, content->flag_movement_rrr);
+	//ft_printf("push back\nras: %i\nrbs: %i\nrr: %i\nrras: %i\nrrbs: %i\nrrrs: %i\n", content->flag_movement_ra,content->flag_movement_rb, content->flag_movement_rr, content->flag_movement_rra, content->flag_movement_rrb, content->flag_movement_rrr);
 	while (content->flag_movement_rr > 0)
 	{
 		cmd_rr(data);
@@ -345,7 +345,7 @@ void bring_into_right_order(t_data *data)
 		list= list->next;
 	}
 	//ft_printf("index:%i, smallest el: %i",index, data->smallest_el_stack1);
-	if (index > ft_lstsize(data->stack1)/ 2)
+	if (index < ft_lstsize(data->stack1)/ 2)
 	{
 		while (ft_cast_content(data->stack1->content)->value != data->smallest_el_stack1)
 		{
@@ -368,7 +368,6 @@ void bring_into_right_order(t_data *data)
 
 int	main(int argc, char *argv[])
 {
-	t_list	*list;
 	t_data	data;
 
 	data.stack1 = NULL;

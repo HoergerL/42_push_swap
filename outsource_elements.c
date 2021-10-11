@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 11:48:17 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/09 11:48:45 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/11 15:20:12 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ void	outsource_elements(t_content *content, int intchr, t_data *data)
 		last_found = intchr;
 		content->flag_longest_sub = 1;
 	}
-	else if (content->flag_longest_sub != 1 &&
-		ft_intchr(data->longest_sub, data->len_sub, ft_cast_content(data->stack1->next->content)->value) != -1 && 
-		content->value > data->longest_sub[last_found + 1] && 
-		content->value < data->longest_sub[last_found + 2])
-	{
-		content->flag_longest_sub = 1;
-		cmd_sa(data);
-		cmd_ra(data);
-	}
+	//else if (content->flag_longest_sub != 1 &&
+	//	ft_intchr(data->longest_sub, data->len_sub, ft_cast_content(data->stack1->next->content)->value) != -1 && 
+	//	content->value > data->longest_sub[last_found + 1] && 
+	//	content->value < data->longest_sub[last_found + 2])
+	//{
+	//	content->flag_longest_sub = 1;
+	//	cmd_sa(data);
+	//	cmd_ra(data);
+	//}
 }
 
 void outsource_elements_not_in_sub(t_data *data)
@@ -54,6 +54,7 @@ void outsource_elements_not_in_sub(t_data *data)
 			cmd_pb(data);
 		else
 			cmd_ra(data);
+		//print_stacks(data);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 18:24:56 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/09 15:34:55 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/11 15:08:36 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,5 @@ void		create_new_max_list(int **solutions, int *max_len, int *arr, int i);
 int			*intdup(int const *src, size_t len);
 void		print_int_arr(int *arr, int len);
 void		outsource_elements_not_in_sub(t_data *data);
+void	print_stacks(t_data *data);
 #endif

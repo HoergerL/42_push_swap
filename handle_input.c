@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 18:25:00 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/08 15:42:40 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/11 16:18:26 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	prepare_input(int argc, char *argv[], t_data *data)
 	char	**split_res;
 
 	i = 1;
+	if (argc < 2)
+		display_error();
 	while (argv[i] != NULL)
 	{
 		split_res = ft_split(argv[i], ' ');
@@ -83,4 +85,6 @@ void	prepare_input(int argc, char *argv[], t_data *data)
 		ft_free_2d((void ***) &split_res);
 		i++;
 	}
+	if (ft_lstsize(data->stack1) < 2)
+		display_error();
 }
