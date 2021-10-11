@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:29:15 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/11 16:02:01 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/11 17:00:43 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -366,6 +366,43 @@ void bring_into_right_order(t_data *data)
 	
 }
 
+int	check_already_sorted(t_data *data)
+{
+	t_list	*list;
+	int		prev;
+
+	list = data->stack1->next;
+	prev = ft_cast_content(data->stack1->content)->value;
+	while (list)
+	{
+		//ft_printf("prev: %i\nvalue: %i", prev, ft_cast_content(list->content)->value);
+		if (ft_cast_content(list->content)->value < prev)
+			return 1;
+		prev = ft_cast_content(list->content)->value;
+		list = list->next;
+	}
+	exit(0);
+}
+
+void handle_short_lists(t_data *data)
+{
+	t_list	*listel;
+
+	if (ft_lstsize(data->stack1) < 4)
+	{
+		listel = data->stack1;
+		while (check_already_sorted(data))
+		{
+			print_stacks(data);
+			if (listel->next && 
+			ft_cast_content(listel->next->content)->value < ft_cast_content(listel->content)->value)
+				cmd_sa(data);
+			else 
+				cmd_rra(data);
+		}
+	}
+}
+
 int	main(int argc, char *argv[])
 {
 	t_data	data;
@@ -377,6 +414,8 @@ int	main(int argc, char *argv[])
 	ft_bzero(&data, sizeof(data));
 	prepare_input(argc, argv, &data);
 	data.len_list = ft_lstsize(data.stack1);
+	check_already_sorted(&data);
+	handle_short_lists(&data);
 	//print_stacks(&data);
 	//ft_lstprint(data.stack1, 1);
 	//ft_lstprint(data.stack2, 2);

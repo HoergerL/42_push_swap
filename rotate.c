@@ -31,8 +31,8 @@ int	cmd_rr(t_data *data)
 {
 	if (data->stack1 == NULL || data->stack2 == NULL)
 		return (0);
-	cmd_ra(data);
-	cmd_rb(data);
+	rotate(&data->stack1);
+	rotate(&data->stack2);
 	write(1, "rr\n", 3);
 	return (1);
 }
