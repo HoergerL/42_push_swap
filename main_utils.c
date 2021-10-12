@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 09:39:08 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/12 10:16:16 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/12 14:16:05 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,17 @@ int	check_already_sorted(t_data *data)
 
 void	handle_short_lists(t_data *data)
 {
-	t_list		*listel;
-	t_content	*content_next;
-	t_content	*content;
+	t_list	*listel;
 
-	content = ft_cast_content(listel->content);
-	content_next = ft_cast_content(listel->next->content);
 	if (ft_lstsize(data->stack1) < 4)
 	{
 		listel = data->stack1;
 		while (check_already_sorted(data))
 		{
+			listel = data->stack1;
 			if (listel->next
-				&& content_next->value < content->value)
+				&& ft_cast_content(listel->next->content)->value
+				< ft_cast_content(listel->content)->value)
 				cmd_sa(data);
 			else
 				cmd_rra(data);

@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 18:25:10 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/02 18:25:11 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/12 12:57:43 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,9 @@ void	display_error(void)
 {
 	write(2, "Error\n", 6);
 	exit(1);
+}
+
+t_content	*ft_cast_content(void *content)
+{
+	return ((t_content *) content);
 }

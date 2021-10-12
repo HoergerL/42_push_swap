@@ -1,5 +1,5 @@
 NAME = push_swap
-NAME_BONUS = push_swap_bonus
+NAME_BONUS = checker
 CC = gcc
 CFLAGS = #-Wall -Werror -Wextra
 RM = rm -f

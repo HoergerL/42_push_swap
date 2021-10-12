@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 18:24:34 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/11 17:19:10 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/12 12:56:39 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,11 @@ int				ft_check_nbr(char *nbr);
 void			ft_free_1d(void **to_free);
 void			ft_free_2d(void ***to_free);
 int				ft_intchr(int *haystack, int size_haystack, int needle);
+
+char			*get_next_line(int fd);
+void			*gnl_ft_calloc(size_t count, size_t size);
+void			*gnl_ft_memcpy(void *dst, const void *src, size_t n);
+int				gnl_ft_strlen(const char *s);
+char			*gnl_ft_substr(char const *s, int start, int len);
+char			*gnl_ft_strchr(const char *s, int c);
 #endif

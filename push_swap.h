@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 18:24:56 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/12 10:17:13 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/12 14:14:53 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,5 @@ void		ft_execute_rotates(t_data *data);
 int			calc_optimal_push_back(t_data *data);
 int			calc_steps(t_data *data, t_list *list, int index);
 int			find_correct_place_for_el(t_data *data, t_list *list);
+//void		print_stacks(t_data *data);
 #endif

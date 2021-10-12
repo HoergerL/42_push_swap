@@ -6,16 +6,11 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:29:15 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/12 10:12:55 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/12 14:14:40 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-t_content	*ft_cast_content(void *content)
-{
-	return ((t_content *) content);
-}
 
 void	ft_print_content(t_content *content)
 {

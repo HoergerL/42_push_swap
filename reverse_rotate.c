@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:20:10 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/11 17:21:09 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/12 12:40:40 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	reverse_rotate(t_list **list)
 	t_list	*temp_list;
 	t_list	*listel;
 
+	if (ft_lstsize(*list) < 2)
+		return ;
 	temp_list = ft_lstlast(*list);
 	listel = *list;
 	while (listel)
