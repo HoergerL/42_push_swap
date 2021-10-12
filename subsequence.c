@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   subsequence.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/11 17:19:58 by lhoerger          #+#    #+#             */
+/*   Updated: 2021/10/11 17:20:03 by lhoerger         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	check_subsequence(int max_len, int val, int **solutions)
@@ -92,7 +104,5 @@ void	get_longest_subsequence(t_data *data)
 		get_subsequence(arr, data->len_list, data);
 		i++;
 	}
-	//ft_printf("max_len: %i, start: %i\n", data->len_sub, data->start_sub);
-	//print_int_arr(data->longest_sub, data->len_sub);
 	ft_free_1d((void **) &arr);
 }
