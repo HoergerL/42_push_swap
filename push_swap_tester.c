@@ -6,7 +6,7 @@
 /*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:21:22 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/12 12:56:14 by lhoerger         ###   ########.fr       */
+/*   Updated: 2021/10/12 14:19:20 by lhoerger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	execute_cmd(t_data *data, char *str)
 		cmd_sb(data);
 	else
 	{
-		write(1, "ERROR\n", 6);
+		write(2, "ERROR\n", 6);
 		exit(1);
 	}
 }
