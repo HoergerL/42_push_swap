@@ -1,6 +1,6 @@
 # 42_push_swap
 
-Push_swap is about programming a <b>sorting algorithm</b>, with 2 stacks, stack a and stack b. At the beginning of your sorting algorithm all of the elements are  placed on stack a.
+Push_swap is about programming a <b>sorting algorithm</b>, with 2 stacks, stack a and stack b. At the beginning of your sorting algorithm all of the elements are  placed on stack a (this is implemented with a gerneric linked list).
 You can only use the following operations;
 1. sa - swap a: swap the first 2 elements of stack a
 2. sb - swap b: swap the first 2 elements of stack b
@@ -25,7 +25,15 @@ For 100 points the algorithm needs to take:
 1. less than 5500 for 500 numbers
 2. less than 700 for 100 numbers
 
+### bonus:
+To get the bonus points for this task you have to implement a checker for the result of a push swap algorithm.
+You can create this with the bonus rule of the Makefile.
+Here is an example of the usage:
+```bash
+ARG="1 5 2 4 3";./push_swap $ARG | ./checker $ARG
+```
+
 The mean of the algorithm takes
-1. 5024 operations for a stack of size 500
-2. 535 operations for a stack of size 100
+1. 5024 operations for a stack of size 500 (requirement to get 100/100 points is to be below 5500)
+2. 535 operations for a stack of size 100 (requirement to get 100/100 points is to be below 700)
 
