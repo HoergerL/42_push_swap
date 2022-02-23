@@ -39,7 +39,7 @@ int	get_lowest_rotation(t_movement *movement, t_list *list)
 	}
 }
 
-void	truncate_flag_movements(t_data *data, t_list *list)
+void	truncate_flag_movements(t_list *list)
 {
 	ft_cast_content(list->content)->flag_mvmnt_ra = 0;
 	ft_cast_content(list->content)->flag_mvmnt_rb = 0;
@@ -49,7 +49,7 @@ void	truncate_flag_movements(t_data *data, t_list *list)
 	ft_cast_content(list->content)->flag_mvmnt_rrr = 0;
 }
 
-void	set_flags_mvmnt(t_data *data, t_movement *movement, t_list *list)
+void	set_flags_mvmnt(t_movement *movement, t_list *list)
 {
 	t_content	*content;
 
@@ -74,12 +74,12 @@ void	set_flags_mvmnt(t_data *data, t_movement *movement, t_list *list)
 	}
 }
 
-void	fill_data(t_data *data, t_movement *movement, t_list *list)
+void	fill_data(t_movement *movement, t_list *list)
 {
 	t_content	*content;
 
 	content = ft_cast_content(list->content);
-	set_flags_mvmnt(data, movement, list);
+	set_flags_mvmnt(movement, list);
 	if (content->flag_mvmnt == RA_RRB)
 	{
 		content->flag_mvmnt_ra = movement->ras;
@@ -98,7 +98,7 @@ int	calc_rot(t_data *data, int idx_src, int idx_dst, t_list *list)
 	int			lowest;
 
 	ft_bzero(&movement, sizeof(t_movement));
-	truncate_flag_movements(data, list);
+	truncate_flag_movements(list);
 	movement.rbs = idx_src;
 	movement.rrbs = ft_lstsize(data->stack2) - idx_src;
 	if (ft_lstsize(data->stack2) == 1)
@@ -116,6 +116,6 @@ int	calc_rot(t_data *data, int idx_src, int idx_dst, t_list *list)
 	movement.ra_rrb = movement.ras + movement.rrbs;
 	movement.rb_rra = movement.rbs + movement.rras;
 	lowest = get_lowest_rotation(&movement, list);
-	fill_data(data, &movement, list);
+	fill_data(&movement, list);
 	return (lowest);
 }

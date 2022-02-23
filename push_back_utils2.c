@@ -21,14 +21,13 @@ void	push_back_optimal_element(t_data *data)
 
 void	push_back(t_data *data)
 {
-	int	nbr_rotates;
 
 	while (1)
 	{
 		if (data->stack2 == NULL)
 			break ;
 		define_biggest_smallest_el_stack1(data);
-		nbr_rotates = calc_optimal_push_back(data);
+		calc_optimal_push_back(data);
 		push_back_optimal_element(data);
 	}
 }

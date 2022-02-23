@@ -18,7 +18,7 @@ $(NAME):
 	ar -rcs $(NAME) *.o $(LIBFT_PATH)*.o
 
 sub_libft:
-	$(MAKE) LIBFT.a -C $(LIBFT_PATH)
+	$(MAKE) libft.a -C $(LIBFT_PATH)
 
 clean:
 	rm -f *.out

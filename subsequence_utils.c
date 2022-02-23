@@ -49,16 +49,3 @@ int	*intdup(int const *src, size_t len)
 	ft_memcpy(p, src, len * sizeof(int));
 	return (p);
 }
-
-void	print_int_arr(int *arr, int len)
-{
-	int	k;
-
-	k = 0;
-	while (k < len)
-	{
-		ft_printf("%i, ", arr[k]);
-		k++;
-	}
-	ft_printf("\n");
-}

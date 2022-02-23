@@ -64,9 +64,7 @@ void	get_subsequence(int *arr, int total_len_arr, t_data *data)
 		if (arr[i] > solutions[max_len][max_len])
 			create_new_max_list(solutions, &max_len, arr, i);
 		else
-		{
 			check_subsequence(max_len, arr[i], solutions);
-		}
 		i++;
 	}
 	edit_data(data, max_len, arr, solutions);

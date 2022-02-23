@@ -12,40 +12,6 @@
 
 #include "push_swap.h"
 
-//void	print_stacks(t_data *data) 
-//{
-//	t_list		*stack_a;
-//	t_list		*stack_b;
-//	t_content	*content_a;
-//	t_content	*content_b;
-
-//	stack_a = data->stack1;
-//	stack_b = data->stack2;
-//	ft_printf("Stack A:    Stack B:\n");
-//	while (stack_a != NULL || stack_b != NULL)
-//	{
-//		if (stack_a != NULL)
-//		{
-//			content_a = ft_cast_content(stack_a->content);
-//			printf("%3d        ", content_a->value);
-//			stack_a = stack_a->next;
-//		}
-//		else
-//			printf("           ");
-//		if (stack_b != NULL)
-//		{
-//			content_b = ft_cast_content(stack_b->content);
-//			printf("%3d        \n", content_b->value);
-//			stack_b = stack_b->next;
-//		}
-//		else
-//			printf("        \n");
-//	}
-//	for (int i = 0; i < data->len_sub; i++) //Achtung for
-//		ft_printf("%d, ", data->longest_sub[i]);
-//	ft_printf("\n");
-//}
-
 void	check_sorted(t_data *data, int flag)
 {
 	t_list	*list;

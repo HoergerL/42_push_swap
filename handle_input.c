@@ -27,7 +27,6 @@ t_content	*create_data(int nbr)
 
 int	ft_lst_dup(t_list *list, int nbr)
 {
-	t_list		*curr_el;
 	t_content	*content;
 
 	while (list)

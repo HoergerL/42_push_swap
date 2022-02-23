@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_back_utils3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lhoerger <lhoerger@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:08:24 by lhoerger          #+#    #+#             */
-/*   Updated: 2021/10/12 10:12:35 by lhoerger         ###   ########.fr       */
+/*   Updated: 2022/02/23 15:32:08 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	calc_optimal_push_back(t_data *data)
 	t_list	*list;
 	int		min;
 	int		temp_min;
-	int		min_nbr;
 	int		index;
 
 	index = 0;

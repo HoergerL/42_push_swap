@@ -12,15 +12,11 @@
 
 #include "push_swap.h"
 
-void	outsource_elements(t_content *content, int intchr, t_data *data)
+void	outsource_elements(t_content *content, int intchr)
 {
-	int static	last_found = 0;
 
 	if (intchr != -1)
-	{
-		last_found = intchr;
 		content->flag_longest_sub = 1;
-	}
 }
 
 void	outsource_elements_not_in_sub(t_data *data)
@@ -36,7 +32,7 @@ void	outsource_elements_not_in_sub(t_data *data)
 		list = data->stack1;
 		content = ft_cast_content(list->content);
 		intchr = ft_intchr(data->longest_sub, data->len_sub, content->value);
-		outsource_elements(content, intchr, data);
+		outsource_elements(content, intchr);
 		if (content->flag_longest_sub == 0)
 			cmd_pb(data);
 		else
